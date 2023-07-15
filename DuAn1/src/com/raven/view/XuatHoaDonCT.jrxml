@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="1187" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="91b4d5a2-6bc5-42ff-b153-c4bc335b5f81">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="maHD1" class="java.lang.String">
+		<defaultValueExpression><![CDATA["maHD1"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     hoaDOnct."soLuong"*hoaDOnct."donGia"-hoaDOnct."tienThua" AS hoaDOnCT_tongTien,
+     HOADONCT."maSp" AS HOADONCT_maSp,
+     HOADONCT."tenSp" AS HOADONCT_tenSp,
+     HOADONCT."donGia" AS HOADONCT_donGia,
+     HOADONCT."soLuong" AS HOADONCT_soLuong,
+     HOADONCT."tienThua" AS HOADONCT_tienThua,
+     HOADONCT."trangThai" AS HOADONCT_trangThai,
+     HOADON."maHD" AS HOADON_ma,
+     HOADON."tenXe" AS HOADON_tenXe,
+     HOADON."tenNV" AS HOADON_tenNV,
+     HOADON."tenKH" AS HOADON_tenKH,
+     HOADON."ngayTao" AS HOADON_ngayTao,
+     HOADON."ngayThanhToan" AS HOADON_ngayThanhToan,
+     HOADON."tongTien" AS HOADON_tongTien,
+     HOADON."soTienGiam" AS HOADON_soTienGiam,
+     HOADON."SĐTNguoiNhan" AS HOADON_SĐTNguoiNhan,
+     HOADON."diaChi" AS HOADON_diaChi,
+     HOADON."trangThai" AS HOADON_trangThai
+FROM
+     "dbo"."HOADON" HOADON INNER JOIN "dbo"."HOADONCT" HOADONCT ON HOADON."id" = HOADONCT."idHoaDon"
+WHERE
+     hoaDOnct."idHoaDon" = ( SELECT hoaDOn."id" FROM "dbo"."HOADON" HOADON WHERE hoaDOn."maHD" = $P{maHD1} )]]>
+	</queryString>
+	<field name="hoaDOnCT_tongTien" class="java.math.BigDecimal"/>
+	<field name="HOADONCT_maSp" class="java.lang.String"/>
+	<field name="HOADONCT_tenSp" class="java.lang.String"/>
+	<field name="HOADONCT_donGia" class="java.math.BigDecimal"/>
+	<field name="HOADONCT_soLuong" class="java.lang.Integer"/>
+	<field name="HOADONCT_tienThua" class="java.math.BigDecimal"/>
+	<field name="HOADONCT_trangThai" class="java.lang.Integer"/>
+	<field name="HOADON_ma" class="java.lang.String"/>
+	<field name="HOADON_tenXe" class="java.lang.String"/>
+	<field name="HOADON_tenNV" class="java.lang.String"/>
+	<field name="HOADON_tenKH" class="java.lang.String"/>
+	<field name="HOADON_ngayTao" class="java.lang.String"/>
+	<field name="HOADON_ngayThanhToan" class="java.lang.String"/>
+	<field name="HOADON_tongTien" class="java.math.BigDecimal"/>
+	<field name="HOADON_soTienGiam" class="java.math.BigDecimal"/>
+	<field name="HOADON_SĐTNguoiNhan" class="java.lang.String"/>
+	<field name="HOADON_diaChi" class="java.lang.String"/>
+	<field name="HOADON_trangThai" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="98" y="26" width="341" height="35" uuid="696b6535-c182-409d-8840-7ee8037261c7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HÓA ĐƠN CHI TIẾT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="15" width="100" height="20" uuid="676b868b-a0ea-46dc-a8f3-c6e35ed3610d"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã Hóa Đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="15" width="100" height="20" uuid="381e55b9-4fa0-4f0e-83bc-f0b5e49b952f"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số Tiền Giảm ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="15" width="100" height="20" uuid="552b1299-8a62-44b0-9108-0410863cadf8"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_ma}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="474" y="15" width="146" height="20" uuid="604e5f2f-a070-483e-b20d-80444fbc9494"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_soTienGiam}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="204" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="10" width="100" height="20" uuid="21ccbc16-7b87-44a7-8e33-c24988abbdd1"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên Xe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="41" width="100" height="20" uuid="092847b0-8680-4c9d-b81d-225513adebbf"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên Nhân Viên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="10" width="154" height="20" uuid="276efdab-79b3-4ac1-aea4-5bccbd5f51d8"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày Thanh Toán Hóa Đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="41" width="154" height="20" uuid="c020e23d-0395-4c9a-8fce-0c66b53428c6"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SĐT Người Nhận]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="10" width="100" height="20" uuid="0fb25481-3a5a-4a3b-8fc2-8ee45cd41a5a"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_tenXe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="41" width="100" height="20" uuid="8526af6c-0814-448c-95e8-dc5355579e10"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_tenNV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="10" width="146" height="20" uuid="be25abc4-4eae-4393-b60b-7b5b52c4e2cc"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_ngayThanhToan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="41" width="146" height="20" uuid="a5e1d14b-9d9a-4f96-8a61-8c54470f43c3"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_SĐTNguoiNhan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="79" width="100" height="20" uuid="68c9589f-4073-41f7-afce-e9a3bfd54f2a"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên Khách Hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="114" width="100" height="20" uuid="024c9950-608d-4ed2-9ca1-45fa600b25fa"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày Tạo Hóa Đơn]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="79" width="100" height="20" uuid="fc5bacb8-1969-4355-9fee-91f5bcdf8e2c"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_tenKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="114" width="100" height="20" uuid="fd523259-c7e2-4982-8efc-75594a7a9500"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_ngayTao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="309" y="79" width="154" height="20" uuid="60876bdb-7af2-4071-b3ad-0a427a308f21"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Địa Chỉ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="114" width="154" height="20" uuid="22f91ca0-0bef-4d3f-8dc9-83ce21743dd0"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trạng thái]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="474" y="79" width="146" height="20" uuid="dcbcca49-cb36-417e-b352-c2a293d041b5"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_diaChi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="114" width="146" height="20" uuid="e51d38bd-8fa9-492b-aff9-11347897f38d"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_trangThai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="35" y="168" width="100" height="20" uuid="6c3859c2-7185-4d28-b2ca-2294d1d34ff3"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã Sản Phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="168" width="100" height="20" uuid="b3c0a758-ca7f-44c3-9356-e9c6c0477b34"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên Sản Phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="168" width="100" height="20" uuid="e36380c9-d5fc-4ca3-94ac-9c4ddf518ff3"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đơn Giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="168" width="100" height="20" uuid="d750d8b5-90a1-4a2b-a695-789d4560a0f3"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="168" width="100" height="20" uuid="87a0d2f4-6444-4a7b-9a4a-780f5ad70c20"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền Thừa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="168" width="100" height="20" uuid="325bc1ae-c733-4a64-8ee2-078aa7171844"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng Tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="637" y="168" width="100" height="20" uuid="3961b221-52a3-4d44-b2cc-4d5167201d19"/>
+				<textElement>
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trạng Thái]]></text>
+			</staticText>
+			<line>
+				<reportElement x="37" y="147" width="702" height="1" uuid="271c1cd9-903c-4c36-9a18-7e7a2aee892b"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="78" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="25" width="100" height="20" uuid="1723816b-31bc-4c03-8dcb-36dface9fa15"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADONCT_maSp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="25" width="100" height="20" uuid="bafeec49-7aa7-44f7-9132-07cd883127b3"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADONCT_tenSp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="237" y="25" width="100" height="20" uuid="fba4b723-0f87-42d9-b525-33899ea7d4fd"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADONCT_donGia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="25" width="100" height="20" uuid="b3764c66-8aa2-40e3-a12b-e1cb9a7c9b64"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADONCT_soLuong}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="435" y="25" width="100" height="20" uuid="f9c3ac8d-3ebd-43b5-8ff5-d10e6dd7192d"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADONCT_tienThua}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="537" y="25" width="100" height="20" uuid="da0a5284-5c4d-4d6b-a231-2fe96a9748af"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoaDOnCT_tongTien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="635" y="25" width="100" height="20" uuid="64835035-1634-4ffd-8ec5-ed06afab2e75"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADONCT_trangThai}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="35" y="16" width="702" height="1" uuid="72efe426-26c5-41b7-b10d-4bf52dcdd45e"/>
+			</line>
+			<line>
+				<reportElement x="33" y="62" width="702" height="1" uuid="11238263-f900-4ee8-b090-d0820be388da"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="320" y="14" width="154" height="20" uuid="ca52cd8b-a4b6-4339-8308-6211c8d532c7"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền hóa đơn ]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="474" y="14" width="100" height="20" uuid="bb74006f-deb7-47ba-b616-764aeb2ed26c"/>
+				<textElement>
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOADON_tongTien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
